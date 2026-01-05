@@ -1,0 +1,40 @@
+###01 POST Create  Product
+POST http://localhost:3000/api/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Camara&
+description=ABC-123&
+price=100
+
+###02 POST Create  Product
+POST http://localhost:3000/api/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Laptop&
+description=CDB-123&
+price=2300
+
+###03 POST Create  Product
+POST http://localhost:3000/api/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Mouse&
+description=BC-123&
+price=150
+
+###04 POST Create  Product
+POST http://localhost:3000/api/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Teclado&
+description=B1C-123&
+price=1020
+
+###05 POST Create  Product
+POST http://localhost:3000/api/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Parlante&
+description=A1C-123&
+price=120
+###

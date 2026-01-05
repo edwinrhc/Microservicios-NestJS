@@ -1,0 +1,8 @@
+###01 PATCH Update  Product
+PATCH http://localhost:3000/api/products/64549b35-6374-45a5-ad38-c238740cd20a
+Content-Type: application/json
+
+{
+  "name": "Lenovo Laptop",
+  "price": "150.25"
+}

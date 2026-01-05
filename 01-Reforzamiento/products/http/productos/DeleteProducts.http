@@ -1,0 +1,5 @@
+
+### DELETE Productos
+DELETE http://localhost:3000/api/products/bc915bd8-524b-4dbf-a5a7-01b3df78d6bf
+
+###
