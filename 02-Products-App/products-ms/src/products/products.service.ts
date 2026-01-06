@@ -15,8 +15,36 @@ export class ProductsService {
     return product;
   }
 
-  findAll() {
-    return this.prisma.product.findMany();
+  async findAll(paginationDto: PaginationDto) {
+    const { page = 1, limit = 10 } = paginationDto;
+
+    const skip = (page - 1) * limit;
+
+    const [total, data] = await Promise.all([
+      this.prisma.product.count(),
+      this.prisma.product.findMany({
+        skip: Math.max(0, skip),
+        take: limit,
+        orderBy: { id: 'asc' },
+      }),
+    ]);
+    const lastPage = Math.ceil(total / limit);
+
+    return {
+      data: await this.prisma.product.findMany({
+        skip: Math.max(0, (page - 1) * limit),
+        take: limit,
+        // Ordenamos en forma ascendente
+        orderBy: {
+          id: 'asc',
+        },
+      }),
+      meta: {
+        total: total,
+        page: page,
+        lastPage: lastPage,
+      },
+    };
   }
 
   async findOne(id: number) {
