@@ -5,9 +5,8 @@ Content-Type: application/x-www-form-urlencoded
 name=Camara&
 price=100
 
-###02 POST Create  Product
-POST http://localhost:3000/products
-Content-Type: application/x-www-form-urlencoded
+###03 GET Find ALL
+GET http://localhost:3000/products
 
-name=Laptop&
-price=2300
+
+###
