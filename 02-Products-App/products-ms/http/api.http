@@ -5,8 +5,7 @@ Content-Type: application/x-www-form-urlencoded
 name=Camara&
 price=100
 
-###03 GET Find ALL
-GET http://localhost:3000/products
-
+###03 GET Find Products Page
+GET http://localhost:3000/products?page=2&limit=10
 
 ###
