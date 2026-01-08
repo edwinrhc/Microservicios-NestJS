@@ -21,7 +21,7 @@ export class ProductsService {
     const skip = (page - 1) * limit;
 
     const [total, data] = await Promise.all([
-      this.prisma.product.count(),
+      this.prisma.product.count({ where: { available: true }}),
       this.prisma.product.findMany({
         skip: Math.max(0, skip),
         take: limit,
@@ -34,6 +34,9 @@ export class ProductsService {
       data: await this.prisma.product.findMany({
         skip: Math.max(0, (page - 1) * limit),
         take: limit,
+        where: {
+          available: true
+        },
         // Ordenamos en forma ascendente
         orderBy: {
           id: 'asc',
@@ -49,19 +52,31 @@ export class ProductsService {
 
   async findOne(id: number) {
     const product = await this.prisma.product.findUnique({
-      where: { id: id },
+      where: { id: id , available: true},
     });
-    if(!product){
+    if (!product) {
       throw new NotFoundException(`Product with id #${id} not found`);
     }
     return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: number, updateProductDto: UpdateProductDto) {
+    await this.findOne(id);
+
+    return this.prisma.product.update({
+      where: { id },
+      data: updateProductDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number) {
+    await this.findOne(id);
+    const product = await this.prisma.product.update({
+      where: { id },
+      data: {
+        available: false,
+      },
+    });
+    return product;
   }
 }
