@@ -6,9 +6,19 @@ name=Camara&
 price=100
 
 ###02 GET Find Products Page
-GET http://localhost:3000/products?page=2&limit=10
+GET http://localhost:3000/products?page=1&limit=10
 
 
 ###03 GET Find Products Page By ID
 GET http://localhost:3000/products/1
-###
+
+###04 PATCH actualizar producto
+PATCH localhost:3000/products/5
+Content-Type: application/x-www-form-urlencoded
+
+name=Camara Lenovo&
+price=150
+
+###05 Delete eliminar producto
+DELETE localhost:3000/products/5
+Content-Type: application/x-www-form-urlencoded
